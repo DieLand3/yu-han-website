@@ -510,7 +510,24 @@
       transform: translateY(0);
     }
 
-    /* MOBILE */
+    .pdf-toggle-btn {
+      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--terracotta), var(--mauve));
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 3px 12px rgba(193, 100, 79, 0.25);
+    }
+    .pdf-toggle-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(193, 100, 79, 0.35);
+    }
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1.2rem; }
@@ -584,7 +601,7 @@
       <span class="section-label">About Me</span>
       <h2 class="section-title">Who I am</h2>
       <p>I'm <strong>Yu-Han Ho</strong>, a strategy and analytics professional currently pursuing my M.S. in Business Analytics & Artificial Intelligence at UT Dallas. I specialize in translating behavioral patterns and operational data into practical, human-centered solutions.</p>
-      <p>[Bio coming soon — currently thinking through what best represents my story and journey so far. Stay tuned!]</p>
+      <p>With a foundation in both quantitative analysis and strategic thinking, I bring a cross-functional perspective to complex business problems — from operational design and process optimization to data-driven decision-making. I thrive at the intersection of people and systems, where insight-driven strategies lead to meaningful, measurable outcomes.</p>
       <p>Open to roles in <strong>Strategy, Business Analytics, and Operations Design.</strong></p>
     </div>
   </div>
@@ -605,6 +622,7 @@
         <h3 class="project-title">TJ Maxx Store Layout Concepts</h3>
         <p class="project-desc">A behavior-aware store layout proposal introducing a Decision Support Zone, Checkout Flow Enhancement Strategy, and Behavior-Guided Organization Concept to reduce reactive labor and improve customer flow.</p>
         <p class="project-role">Role: Strategy & Analytics · UT Dallas MS Project</p>
+        <a href="tjmaxx_proposal.pdf" target="_blank" class="pdf-toggle-btn" style="display:inline-block; text-decoration:none;">📄 View Full Proposal</a>
       </div>
     </div>
     <div class="project-card reveal">
@@ -642,7 +660,7 @@
           <div class="contact-icon">✉️</div>
           <div>
             <p class="contact-label">Email</p>
-            <a href="mailto:youremail@utdallas.edu" class="contact-value">youremail@utdallas.edu</a>
+            <a href="/cdn-cgi/l/email-protection#bbc2d4cec9ded6dad2d7fbcecfdfdad7d7dac895dedfce" class="contact-value"><span class="__cf_email__" data-cfemail="ef96809a9d8a828e8683af9a9b8b8e83838e9cc18a8b9a">[email&#160;protected]</span></a>
           </div>
         </div>
         <div class="contact-item">
@@ -669,18 +687,32 @@
   <p>✦ Designed & built with care · 2025</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // PDF toggle
+  function togglePDF() {
+    const viewer = document.getElementById('pdf-viewer');
+    const btn = document.querySelector('.pdf-toggle-btn');
+    if (viewer.style.display === 'none') {
+      viewer.style.display = 'block';
+      btn.textContent = '✕ Close Proposal';
+    } else {
+      viewer.style.display = 'none';
+      btn.textContent = '📄 View Full Proposal';
+    }
+  }
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
+
   reveals.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
